@@ -14,7 +14,7 @@ private:
 	double 			price;		// Price per unit
 
 public:
-	
+
 };
 
 
