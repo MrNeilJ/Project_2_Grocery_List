@@ -25,6 +25,12 @@ public:
 	void setQuantity(int userQuantity);
 	void setPrice(double userPrice);
 
+	// Getter Functions
+	std::string getItemName();
+	std::string getUnitType();
+	int getQuantity();
+	double getPrice();
+
 	// Operator Overloading for the "==" operator
 	bool operator==(const std::string &);
 

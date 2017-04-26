@@ -4,7 +4,7 @@
 
 int main() {
 	std::cout << "*******************************************" << std::endl;
-	std::cout << "*				GROCERY LIST				*" << std::endl;
+	std::cout << "*              GROCERY LIST               *" << std::endl;
 	std::cout << "*******************************************" << std::endl;
 
 	std::cout << "Welcome to the Grocery list application!" << std::endl;
@@ -14,7 +14,7 @@ int main() {
 	menuMaker mainMenu("What would you like to do?", "Add an item", "Remove an item", "View your list", "Quit");
 	List myList;
 
-	while (userChoice != 4) {
+	do  {
 		mainMenu.prompt();
 		userChoice = mainMenu.getResponse();
 
@@ -33,7 +33,7 @@ int main() {
 		else {
 			std::cout << "Invalid option, please try again.\n" << std::endl;
 		}
-	}
+	} while (userChoice != 4);
 
 
 	return 0;

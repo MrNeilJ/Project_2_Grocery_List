@@ -29,7 +29,7 @@ void List::addItem() {
 	int i = 0;
 
 	std::cout << "Type in the name of the product you wish to add: ";
-	std::getline(std::cin, tempItemName);
+	std::cin >> tempItemName;
 
 	// Make sure the item they are adding isn't already in the list
 	while (i < itemCount || !found){
@@ -42,7 +42,7 @@ void List::addItem() {
 		}
 	}
 
-	if (){
+	if (found){
 		std::cout << "It appears that you already have this item on you list. Would you like to update it? ";
 
 		// Create a menu function here
@@ -54,7 +54,7 @@ void List::addItem() {
 
 		if (existingResponse == 1) {
 			std::cout << "Type in the unit type";
-			std::getline(std::cin, tempType);
+			std::cin >> tempType;
 			std::cout << std::endl;
 
 			std::cout << "Type in the quantity in which you wish to buy: ";
@@ -114,12 +114,12 @@ void List::removeItem() {
 		}
 	}
 
-	if () {
+	if (found) {
 		// Set the values stored in that section to all be NULL
-		groceryList[i].setItemName(NULL);
-		groceryList[i].setUnitType(NULL);
-		groceryList[i].setQuantity(NULL);
-		groceryList[i].setPrice(NULL);
+		groceryList[i].setItemName("");
+		groceryList[i].setUnitType("");
+		groceryList[i].setQuantity(0);
+		groceryList[i].setPrice(0);
 
 		realItem--;
 	}
@@ -134,6 +134,15 @@ void List::displayList() {
 }
 
 void List::printItem() {
+	int i = 0;
+	while (groceryList[i].getItemName() != "") {
+		std::cout << "Item:      " << groceryList[i].getItemName() 	<< std::endl;
+		std::cout << "Unit Type: " << groceryList[i].getUnitType() 	<< std::endl;
+		std::cout << "Quantity:  " << groceryList[i].getQuantity() 	<< std::endl;
+		std::cout << "Price:     " << groceryList[i].getPrice()		<< std::endl;
+		std::cout << "\n----------------------------------------\n"		<< std::endl;
+
+	}
 
 }
 

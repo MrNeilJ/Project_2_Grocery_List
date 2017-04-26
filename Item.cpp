@@ -10,10 +10,10 @@
  * CONSTRUCTORS
  ***************************************************/
 Item::Item() {
-	itemName 	= NULL;
-	unitType 	= NULL;
-	quantity 	= NULL;
-	price 		= NULL;
+	itemName 	= "";
+	unitType 	= "";
+	quantity 	= 0;
+	price 		= 0;
 }
 
 Item::Item(std::string userItem, std::string userType, int userQuantity, double userPrice) {
@@ -44,7 +44,7 @@ void Item::setPrice(double userPrice) {
 }
 
 bool Item::operator==(const std::string& rhs) {
-	if (strcmp(this->itemName, rhs) == 0){
+	if (this->itemName == rhs){
 		return true;
 	}
 	else {
@@ -56,5 +56,21 @@ bool Item::operator==(const std::string& rhs) {
 /***************************************************
  * GETTERS
  ***************************************************/
+
+std::string Item::getItemName() {
+	return itemName;
+}
+
+std::string Item::getUnitType() {
+	return unitType;
+}
+
+int Item::getQuantity() {
+	return quantity;
+}
+
+double Item::getPrice() {
+	return price;
+}
 
 
