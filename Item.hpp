@@ -15,6 +15,22 @@ private:
 
 public:
 
+	// Constructors
+	Item();
+	Item(std::string, std::string, int, double);
+
+	// Setter Functions
+	void setItemName(std::string userName);
+	void setUnitType(std::string userType);
+	void setQuantity(int userQuantity);
+	void setPrice(double userPrice);
+
+	// Operator Overloading for the "==" operator
+	bool operator==(const std::string &);
+
+	// Array redesigners
+
+
 };
 
 
