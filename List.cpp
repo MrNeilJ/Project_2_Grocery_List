@@ -11,9 +11,8 @@
 List::List() {
 	// Creates a blank grocery list of 4 items.
 	groceryList = new Item[4];
-	itemCount = 4;
+	arraySize = 4;
 	realItem = 0;
-
 }
 
 
@@ -28,11 +27,84 @@ void List::addItem() {
 	bool found = false;
 	int i = 0;
 
+	// Build the item you want to add
+	std::cout << "Type in the name of the product you wish to add: ";
+	std::cin >> tempItemName;
+
+	std::cout << "Type in the unit type";
+	std::cin >> tempType;
+	std::cout << std::endl;
+
+	std::cout << "Type in the quantity in which you wish to buy: ";
+	std::cin >> tempQuantity;
+	std::cout << std::endl;
+
+	std::cout << "Type in the price of each separate item: ";
+	std::cin >> tempPrice;
+
+	// Create item
+	Item tempItem(tempItemName, tempType, tempQuantity, tempPrice);
+
+	// Check to see if the item already exists in current array
+	while (!found || groceryList[i].getItemName() == "") {
+		if(groceryList[i] == tempItem) {
+			found = true;
+
+			std::cout << "Looks like this item already exists." << std::endl;
+			std::cout << "OLD ITEM:" << std::endl;
+			printItem(groceryList[i]);
+
+			std::cout << "NEW ITEM:" << std::endl;
+			printItem(tempItem);
+
+			menuMaker replaceMenu(	"What would you like to do with this item?",
+									"Update with my new information",
+									"Leave original information intact");
+
+			int replaceChoice = -1;
+			do {
+				replaceMenu.prompt();
+				replaceChoice = replaceMenu.getResponse();
+
+				if (replaceChoice == 1) {
+					std::cout << "Sounds good, information has been updated. Thank you!" << std::endl;
+					groceryList[i] = tempItem;
+				}
+				else if (replaceChoice == 2) {
+					std::cout << "Okay, we will keep the original information. Thank you!" << std::endl;
+				}
+				else {
+					std::cout << "I do not comprehend that response, please try a different option" << std::endl;
+				}
+			} while (replaceChoice < 1 && replaceChoice > 2);
+		}
+		else {
+			// Set the grocery list item to the first blank area
+			groceryList[i] = tempItem;
+			// Note that an item has been added to the array
+			realItem++;
+
+			// If the item count is equal to the max array size, then resize the current array
+
+		}
+	}
+
+}
+
+/*
+void List::addItem() {
+	std::string tempItemName;
+	std::string tempType;
+	int tempQuantity;
+	double tempPrice;
+	bool found = false;
+	int i = 0;
+
 	std::cout << "Type in the name of the product you wish to add: ";
 	std::cin >> tempItemName;
 
 	// Make sure the item they are adding isn't already in the list
-	while (i < itemCount || !found){
+	while (i < arraySize || !found){
 		// If the item is found in the list notify user
 		if (groceryList[i] == tempItemName) {
 			found = true;
@@ -88,14 +160,15 @@ void List::addItem() {
 		// Adjust the array if adding item would cause it to get outside of its current bounds
 
 		// Add information as a new object in the grocery list
-		groceryList[itemCount] = Item(tempItemName, tempType, tempQuantity, tempPrice);
+		groceryList[arraySize] = Item(tempItemName, tempType, tempQuantity, tempPrice);
 
 		std::cout << tempItemName << " has been added. Thank you!" << std::endl;
 		realItem++;
 	}
 
 }
-
+*/
+/*
 void List::removeItem() {
 	int i = 0;
 	bool found = false;
@@ -104,7 +177,7 @@ void List::removeItem() {
 	std::cout << "Type in the name of the product you wish to remove: ";
 	std::getline(std::cin, tempItemName);
 
-	while (i < itemCount || !found){
+	while (i < arraySize || !found){
 		// If the item is found in the list notify user
 		if (groceryList[i] == tempItemName) {
 			found = true;
@@ -128,21 +201,22 @@ void List::removeItem() {
 	}
 
 }
-
+*/
 void List::displayList() {
+	int i = 0;
 
+	while (groceryList[i].getItemName() != "") {
+		printItem(groceryList[i]);
+		i++;
+	}
 }
 
-void List::printItem() {
-	int i = 0;
-	while (groceryList[i].getItemName() != "") {
-		std::cout << "Item:      " << groceryList[i].getItemName() 	<< std::endl;
-		std::cout << "Unit Type: " << groceryList[i].getUnitType() 	<< std::endl;
-		std::cout << "Quantity:  " << groceryList[i].getQuantity() 	<< std::endl;
-		std::cout << "Price:     " << groceryList[i].getPrice()		<< std::endl;
-		std::cout << "\n----------------------------------------\n"		<< std::endl;
-
-	}
+void List::printItem(Item currentItem) {
+	std::cout << "Item:      " << currentItem.getItemName() 	<< std::endl;
+	std::cout << "Unit Type: " << currentItem.getUnitType() 	<< std::endl;
+	std::cout << "Quantity:  " << currentItem.getQuantity() 	<< std::endl;
+	std::cout << "Price:     " << currentItem.getPrice()		<< std::endl;
+	std::cout << "\n----------------------------------------\n"		<< std::endl;
 
 }
 

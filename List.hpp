@@ -11,7 +11,7 @@
 class List {
 private:
 	Item* groceryList;
-	int itemCount;
+	int arraySize;
 	int realItem;
 
 public:
@@ -22,7 +22,7 @@ public:
 	void addItem();
 	void removeItem();
 	void displayList();
-	void printItem();
+	void printItem(Item);
 
 
 	void listCleanUp();

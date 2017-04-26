@@ -43,20 +43,22 @@ void Item::setPrice(double userPrice) {
 	price = userPrice;
 }
 
-bool Item::operator==(const std::string& rhs) {
-	if (this->itemName == rhs){
+bool Item::operator==(const Item& rhs) {
+	if (this->itemName.find(rhs.getItemName()) != std::string::npos){
 		return true;
 	}
 	else {
 		return false;
 	}
-
 }
 
 /***************************************************
  * GETTERS
  ***************************************************/
 
+std::string Item::getItemName() const {
+	return itemName;
+}
 std::string Item::getItemName() {
 	return itemName;
 }

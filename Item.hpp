@@ -26,15 +26,16 @@ public:
 	void setPrice(double userPrice);
 
 	// Getter Functions
+	std::string getItemName() const;
 	std::string getItemName();
 	std::string getUnitType();
 	int getQuantity();
 	double getPrice();
 
 	// Operator Overloading for the "==" operator
-	bool operator==(const std::string &);
+	bool operator==(const Item&);
 
-	// Array redesigners
+	// Array re-designers
 
 
 };

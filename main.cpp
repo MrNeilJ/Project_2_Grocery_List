@@ -33,7 +33,7 @@ int main() {
 		else {
 			std::cout << "Invalid option, please try again.\n" << std::endl;
 		}
-	} while (userChoice != 4);
+	} while (userChoice < 1 && userChoice > 3);
 
 
 	return 0;
