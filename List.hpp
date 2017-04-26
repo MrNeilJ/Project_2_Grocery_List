@@ -12,21 +12,20 @@ class List {
 private:
 	Item* groceryList;
 	int itemCount;
+	int realItem;
 
 public:
 	// Constructors
 	List();
 
 	// Member Functions
-	void addItem(std::string, std::string, int, double);
+	void addItem();
 	void removeItem();
 	void displayList();
 	void printItem();
 
 
-
-
-
+	void listCleanUp();
 };
 
 

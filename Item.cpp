@@ -44,7 +44,13 @@ void Item::setPrice(double userPrice) {
 }
 
 bool Item::operator==(const std::string& rhs) {
-	return strcmp(this->itemName, rhs);
+	if (strcmp(this->itemName, rhs) == 0){
+		return true;
+	}
+	else {
+		return false;
+	}
+
 }
 
 /***************************************************

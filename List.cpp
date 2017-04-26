@@ -11,15 +11,16 @@
 List::List() {
 	// Creates a blank grocery list of 4 items.
 	groceryList = new Item[4];
-	itemCount = 1;
+	itemCount = 4;
+	realItem = 0;
+
 }
 
 
 /***************************************************
  * MEMBER FUNCTIONS
  ***************************************************/
-void List::addItem(std::string userItem, std::string userType, int userQuantity, double userPrice) {
-	// Use these variables as a temporary holding ground.
+void List::addItem() {
 	std::string tempItemName;
 	std::string tempType;
 	int tempQuantity;
@@ -90,11 +91,41 @@ void List::addItem(std::string userItem, std::string userType, int userQuantity,
 		groceryList[itemCount] = Item(tempItemName, tempType, tempQuantity, tempPrice);
 
 		std::cout << tempItemName << " has been added. Thank you!" << std::endl;
+		realItem++;
 	}
 
 }
 
 void List::removeItem() {
+	int i = 0;
+	bool found = false;
+	std::string tempItemName;
+
+	std::cout << "Type in the name of the product you wish to remove: ";
+	std::getline(std::cin, tempItemName);
+
+	while (i < itemCount || !found){
+		// If the item is found in the list notify user
+		if (groceryList[i] == tempItemName) {
+			found = true;
+		}
+		else {
+			i++;
+		}
+	}
+
+	if () {
+		// Set the values stored in that section to all be NULL
+		groceryList[i].setItemName(NULL);
+		groceryList[i].setUnitType(NULL);
+		groceryList[i].setQuantity(NULL);
+		groceryList[i].setPrice(NULL);
+
+		realItem--;
+	}
+	else {
+		std::cout << "That item does not appear to be in your list, try again with a modified name" << std::endl;
+	}
 
 }
 
@@ -103,5 +134,9 @@ void List::displayList() {
 }
 
 void List::printItem() {
+
+}
+
+void List::listCleanUp() {
 
 }
