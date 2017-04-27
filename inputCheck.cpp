@@ -26,6 +26,8 @@ std::string inputCheck::getWord() {
 **************************************************************/
 char inputCheck::getChar() {
 	tempChar = getchar();
+	std::cin.clear();
+	std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 	return  tempChar;
 }
 
@@ -39,7 +41,6 @@ char inputCheck::getChar(int clear) {
 	}
 	else {
 		tempChar = getchar();
-
 		return  tempChar;
 	}
 
