@@ -27,17 +27,18 @@ void List::addItem() {
 	bool found = false;
 	int i = 0;
 
+	// Expand list if necessary
+	listExpand();
+
 	// Build the item you want to add
 	std::cout << "Type in the name of the product you wish to add: ";
 	std::cin >> tempItemName;
 
-	std::cout << "Type in the unit type";
+	std::cout << "Type in the unit type: ";
 	std::cin >> tempType;
-	std::cout << std::endl;
 
 	std::cout << "Type in the quantity in which you wish to buy: ";
 	std::cin >> tempQuantity;
-	std::cout << std::endl;
 
 	std::cout << "Type in the price of each separate item: ";
 	std::cin >> tempPrice;
@@ -84,6 +85,8 @@ void List::addItem() {
 			// Note that an item has been added to the array
 			realItem++;
 
+			found = true;
+
 			// If the item count is equal to the max array size, then resize the current array
 
 		}
@@ -107,7 +110,15 @@ void List::removeItem() {
     while ((!found || groceryList[i].getItemName() != "") && i < arraySize) {
         if (groceryList[i] == tempItem) {
             found = true;
-            groceryList[i].blankItem();
+			std::cout << groceryList[i].getItemName() << " was removed." << std::endl;
+			groceryList[i].blankItem();
+			realItem--;
+
+			// Organize the list to make sure all blank items are at the end of the array.
+			listOrganize();
+
+			// Shrink list if necessary and reorganize it
+			listShrink();
         }
         else {
             i++;
@@ -251,12 +262,77 @@ void List::printItem(Item currentItem) {
 
 void List::listExpand() {
     // Check to see if the next item added would cause it to reach beyond the bounds of the array
-    if (realItem  == (arraySize - 1)) {
-        Item* tempPtr = new Item[arraySize+4];
+    if (realItem % 4 == 0 && realItem != 0) {
+		arraySize += 4;
+        Item* tempPtr = new Item[arraySize];
+		int i = 0;
+
+		// Add in items into the temp array
+		while (groceryList[i].getItemName() != "") {
+			tempPtr[i] = groceryList[i];
+			i++;
+		}
+		// Create Blank items for the rest of the array
+		for (i; i < arraySize; i++) {
+			tempPtr[i] = Item();
+		}
+		// Delete old dynamically created array
+		groceryList = nullptr;
+
+		// Add the array in the temp array to the original array
+		groceryList = tempPtr;
 
     }
 }
 
 void List::listShrink(){
 
+	// Check to see if the next item added would cause it to reach beyond the bounds of the array
+	if (realItem % 4 == 0) {
+		arraySize -= 4;
+		Item* tempPtr = new Item[arraySize];
+		int i = 0;
+
+		// Add in items into the temp array
+		while (groceryList[i].getItemName() != "") {
+			tempPtr[i] = groceryList[i];
+			i++;
+		}
+		// Create Blank items for the rest of the array
+		for (i; i < arraySize; i++) {
+			tempPtr[i] = Item();
+		}
+		// Delete old dynamically created array
+		delete[]groceryList;
+
+		// Add the array in the temp array to the original array
+		groceryList = tempPtr;
+
+		// Delete the temp pointer value
+		delete[] tempPtr;
+	}
+}
+
+void List::listOrganize() {
+	int blankCount = 0;
+	int itemCount = 0;
+	Item* tempPtr = new Item[arraySize];
+
+	for(int i = 0; i < arraySize; i++) {
+		if (groceryList[i].getItemName() != ""){
+			tempPtr[itemCount] = groceryList[i];
+			itemCount++;
+		}
+		else {
+			blankCount++;
+		}
+	}
+	for (int i = realItem ; i < arraySize; i++) {
+		tempPtr[i] = Item();
+	}
+	delete[]groceryList;
+
+	groceryList = tempPtr;
+
+	delete[] tempPtr;
 }
