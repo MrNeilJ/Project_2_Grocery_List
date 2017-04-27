@@ -291,7 +291,7 @@ void List::listExpand() {
 void List::listShrink(){
 
 	// Check to see if the next item added would cause it to reach beyond the bounds of the array
-	if (realItem % 4 == 0) {
+	if (realItem % 4 == 0 && realItem != 0) {
 		arraySize -= 4;
 		Item* tempPtr = new Item[arraySize];
 		int i = 0;
@@ -311,8 +311,6 @@ void List::listShrink(){
 		// Add the array in the temp array to the original array
 		groceryList = tempPtr;
 
-		// Delete the temp pointer value
-		delete[] tempPtr;
 	}
 }
 
@@ -337,5 +335,4 @@ void List::listOrganize() {
 
 	groceryList = tempPtr;
 
-	delete[] tempPtr;
 }

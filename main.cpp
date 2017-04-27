@@ -11,7 +11,7 @@ int main() {
 	std::cout << "In this application you can create a grocery list for the next time you shop!\n" << std::endl;
 
 	int userChoice = 0;
-	menuMaker mainMenu("What would you like to do?", "Add an item", "Remove an item", "View your list", "Quit");
+	menuMaker mainMenu("\nWhat would you like to do?", "Add an item", "Remove an item", "View your list", "Quit");
 	List myList;
 
 	do  {
