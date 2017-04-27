@@ -16,6 +16,13 @@ Item::Item() {
 	price 		= 0;
 }
 
+Item::Item(std::string userStr) {
+    itemName    = userStr;
+    unitType    = "";
+    quantity    = 0;
+    price       = 0;
+}
+
 Item::Item(std::string userItem, std::string userType, int userQuantity, double userPrice) {
 	itemName 	= userItem;
 	unitType 	= userType;
@@ -74,5 +81,14 @@ int Item::getQuantity() {
 double Item::getPrice() {
 	return price;
 }
+
+void Item::blankItem() {
+    itemName 	= "";
+    unitType 	= "";
+    quantity 	= 0;
+    price 		= 0;
+}
+
+
 
 

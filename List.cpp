@@ -78,7 +78,7 @@ void List::addItem() {
 				}
 			} while (replaceChoice < 1 && replaceChoice > 2);
 		}
-		else {
+		else if (groceryList[i].getItemName() == "") {
 			// Set the grocery list item to the first blank area
 			groceryList[i] = tempItem;
 			// Note that an item has been added to the array
@@ -87,7 +87,35 @@ void List::addItem() {
 			// If the item count is equal to the max array size, then resize the current array
 
 		}
+        else {
+            i++;
+        }
 	}
+
+}
+
+void List::removeItem() {
+    std::string tempString;
+    bool found = false;
+    int i = 0;
+
+    std::cout << "Type in the name of the item that you are looking to remove" << std::endl;
+    std::cin >> tempString;
+
+    Item tempItem(tempString);
+
+    while ((!found || groceryList[i].getItemName() != "") && i < arraySize) {
+        if (groceryList[i] == tempItem) {
+            found = true;
+            groceryList[i].blankItem();
+        }
+        else {
+            i++;
+        }
+    }
+    if (!found) {
+        std::cout << "Could not find the item you were looking for, please try again. Thank you." << std::endl;
+    }
 
 }
 
@@ -202,6 +230,7 @@ void List::removeItem() {
 
 }
 */
+
 void List::displayList() {
 	int i = 0;
 
@@ -220,6 +249,14 @@ void List::printItem(Item currentItem) {
 
 }
 
-void List::listCleanUp() {
+void List::listExpand() {
+    // Check to see if the next item added would cause it to reach beyond the bounds of the array
+    if (realItem  == (arraySize - 1)) {
+        Item* tempPtr = new Item[arraySize+4];
+
+    }
+}
+
+void List::listShrink(){
 
 }

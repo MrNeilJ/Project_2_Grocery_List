@@ -25,7 +25,8 @@ public:
 	void printItem(Item);
 
 
-	void listCleanUp();
+    void listExpand();
+	void listShrink();
 };
 
 

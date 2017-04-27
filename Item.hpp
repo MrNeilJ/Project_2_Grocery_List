@@ -17,6 +17,7 @@ public:
 
 	// Constructors
 	Item();
+	Item(std::string);
 	Item(std::string, std::string, int, double);
 
 	// Setter Functions
@@ -36,6 +37,7 @@ public:
 	bool operator==(const Item&);
 
 	// Array re-designers
+	void blankItem();
 
 
 };
