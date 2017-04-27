@@ -2,6 +2,7 @@
 // Created by Neil on 4/25/2017.
 //
 #include <iostream>
+#include <cstring>
 #include "List.hpp"
 #include "menuMaker.hpp"
 
@@ -263,10 +264,12 @@ void List::printItem(Item currentItem) {
 void List::listExpand() {
     // Check to see if the next item added would cause it to reach beyond the bounds of the array
     if (realItem % 4 == 0 && realItem != 0) {
+		int prevArray = arraySize;
 		arraySize += 4;
         Item* tempPtr = new Item[arraySize];
-		int i = 0;
+		//int i = 0;
 
+		/*
 		// Add in items into the temp array
 		while (groceryList[i].getItemName() != "") {
 			tempPtr[i] = groceryList[i];
@@ -276,8 +279,11 @@ void List::listExpand() {
 		for (i; i < arraySize; i++) {
 			tempPtr[i] = Item();
 		}
+		 */
 		// Delete old dynamically created array
-		groceryList = nullptr;
+		delete[] groceryList;
+
+		std::memcpy(tempPtr, groceryList, prevArray * sizeof(Item));
 
 		// Add the array in the temp array to the original array
 		groceryList = tempPtr;

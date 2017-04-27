@@ -35,6 +35,5 @@ int main() {
 		}
 	} while (userChoice != 4);
 
-
 	return 0;
 }
