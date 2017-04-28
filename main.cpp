@@ -1,6 +1,7 @@
 #include <iostream>
 #include "menuMaker.hpp"
 #include "List.hpp"
+#include "inputCheck.hpp"
 
 int main() {
 	std::cout << "*******************************************" << std::endl;

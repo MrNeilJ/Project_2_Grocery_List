@@ -14,7 +14,7 @@
 
 #include "menuMaker.hpp"
 #include <limits>
-#include "validator.hpp"
+#include "inputCheck.hpp"
 
 /**************************************************************
  *                  menuMaker::menuMaker
@@ -105,7 +105,7 @@ void menuMaker::prompt() {
 
 		std::cout << "\nUser Choice: ";
 
-		userResponse = numberValidator();
+		userResponse = getInt();
 
 		if (userResponse < 0 || userResponse > getMenuSize()) {
 			std::cout << "Does not match menu specifications, try again" << std::endl;
@@ -162,7 +162,7 @@ void menuMaker::prompt(int x) {
 		std::cout << initQues << std::endl;
 		std::cout << "\nUser Choice: ";
 
-		userResponse = numberValidator();
+		userResponse = getInt();
 		response = userResponse;
 
 		if (userResponse < x) {

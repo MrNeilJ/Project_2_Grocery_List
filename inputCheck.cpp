@@ -10,13 +10,15 @@
 /**************************************************************
  *  STRING VALIDATORS
 **************************************************************/
-std::string inputCheck::getString() {
+std::string getString() {
+	std::string tempString;
 	std::getline(std::cin, tempString);
 	return tempString;
 }
 
-std::string inputCheck::getWord() {
-
+std::string getWord() {
+	std::string tempWord;
+	std::getline(std::cin, tempWord);
 	return tempWord;
 }
 
@@ -24,24 +26,39 @@ std::string inputCheck::getWord() {
 /**************************************************************
  *  CHAR VALIDATORS
 **************************************************************/
-char inputCheck::getChar() {
-	tempChar = getchar();
+char getChar() {
+	char tempChar = getchar();
+
+	// Clear the error for the cin stream
 	std::cin.clear();
+
+	// Remove whatever is stored in the buffer up to the newline symbol at the end of the input buffer
 	std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+
 	return  tempChar;
 }
 
-char inputCheck::getChar(int clear) {
+char getChar(int clear) {
+	int tempChar;
 	if (clear == 1) {
 		tempChar = getchar();
-		std::cin.clear();
-		std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 
+		// Clear the error for the cin stream
+		std::cin.clear();
+
+		// Remove whatever is stored in the buffer up to the newline symbol at the end of the input buffer
+		std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 		return tempChar;
 	}
 	else {
 		tempChar = getchar();
+		// Clear the error for the cin stream
+		std::cin.clear();
+
+		// Remove whatever is stored in the buffer up to the newline symbol at the end of the input buffer
+		std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 		return  tempChar;
+
 	}
 
 }
@@ -50,7 +67,9 @@ char inputCheck::getChar(int clear) {
 /**************************************************************
  *  NUMBER VALIDATORS
 **************************************************************/
-int inputCheck::getInt() {
+int getInt() {
+	int tempInt;
+
 	do {
 
 		if (!std::cin) {
@@ -65,12 +84,21 @@ int inputCheck::getInt() {
 
 		std::cin >> tempInt;
 
+
 	} while (!std::cin);
+
+	// Clear the error for the cin stream
+	std::cin.clear();
+
+	// Remove whatever is stored in the buffer up to the newline symbol at the end of the input buffer
+	std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 
 	return tempInt;
 }
 
-float inputCheck::getFloat() {
+float getFloat() {
+	float tempFloat;
+
 	do {
 
 		if (!std::cin) {
@@ -86,6 +114,12 @@ float inputCheck::getFloat() {
 		std::cin >> tempFloat;
 
 	} while (!std::cin);
+
+	// Clear the error for the cin stream
+	std::cin.clear();
+
+	// Remove whatever is stored in the buffer up to the newline symbol at the end of the input buffer
+	std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 
 	return tempFloat;
 }

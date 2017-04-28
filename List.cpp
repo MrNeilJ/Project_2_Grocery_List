@@ -5,6 +5,7 @@
 #include <cstring>
 #include "List.hpp"
 #include "menuMaker.hpp"
+#include "inputCheck.hpp"
 
 /***************************************************
  * CONSTRUCTORS
@@ -33,16 +34,16 @@ void List::addItem() {
 
 	// Build the item you want to add
 	std::cout << "Type in the name of the product you wish to add: ";
-	std::cin >> tempItemName;
+	tempItemName = getString();
 
 	std::cout << "Type in the unit type: ";
-	std::cin >> tempType;
+	tempType = getString();
 
 	std::cout << "Type in the quantity in which you wish to buy: ";
-	std::cin >> tempQuantity;
+	tempQuantity = getInt();
 
 	std::cout << "Type in the price of each separate item: ";
-	std::cin >> tempPrice;
+	tempPrice = getFloat();
 
 	// Create item
 	Item tempItem(tempItemName, tempType, tempQuantity, tempPrice);
@@ -104,7 +105,7 @@ void List::removeItem() {
     int i = 0;
 
     std::cout << "Type in the name of the item that you are looking to remove" << std::endl;
-    std::cin >> tempString;
+    tempString = getString();
 
     Item tempItem(tempString);
 

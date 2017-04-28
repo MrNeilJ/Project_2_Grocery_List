@@ -7,29 +7,16 @@
 
 #include <string>
 
-class inputCheck{
+// String validators
+std::string getString();		// Returns a string characters (can include spaces)
+std::string getWord();			// Returns a single word and has the option to clear the istream
 
+// Char validators
+char getChar();					// Returns a single character
+char getChar(int);
 
-private:
-	std::string tempString;
-	std::string tempWord;
-	char tempChar;
-	int tempInt;
-	float tempFloat;
-
-public:
-	// String validators
-	std::string getString();		// Returns a string characters (can include spaces)
-	std::string getWord();			// Returns a single word and has the option to clear the istream
-
-	// Char validators
-	char getChar();					// Returns a single character
-	char getChar(int);
-
-	// Number validators
-	int getInt();					// Confirms user input was an int and returns that value
-	float getFloat();				// Confirms user input was a float and returns that value
-
-};
+// Number validators
+int getInt();					// Confirms user input was an int and returns that value
+float getFloat();				// Confirms user input was a float and returns that value
 
 #endif //PROJECT_2_INPUTCHECK_HPP
