@@ -51,7 +51,7 @@ void Item::setPrice(double userPrice) {
 }
 
 bool Item::operator==(const Item& rhs) {
-	if (this->itemName.find(rhs.getItemName()) != std::string::npos){
+	if (this->itemName == rhs.getItemName()){
 		return true;
 	}
 	else {

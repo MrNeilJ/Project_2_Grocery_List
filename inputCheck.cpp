@@ -123,3 +123,21 @@ float getFloat() {
 
 	return tempFloat;
 }
+
+/**************************************************************
+ *  STRING MANIPULATORS
+**************************************************************/
+std::string lowerCase(std::string &userString) {
+	for (int i = 0; i < userString.length(); i++) {
+		tolower(userString[i]);
+	}
+}
+
+std::string capitalize(std::string userString) {
+	for (int i = 0; i < userString.length(); i++) {
+		tolower(userString[i]);
+	}
+	toupper(userString[0]);
+}
+
+

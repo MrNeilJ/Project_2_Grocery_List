@@ -19,4 +19,8 @@ char getChar(int);
 int getInt();					// Confirms user input was an int and returns that value
 float getFloat();				// Confirms user input was a float and returns that value
 
+// String manipulators
+std::string lowerCase(std::string);
+std::string capitalize(std::string) ;
+
 #endif //PROJECT_2_INPUTCHECK_HPP
