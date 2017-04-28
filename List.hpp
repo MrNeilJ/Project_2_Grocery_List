@@ -30,6 +30,7 @@ public:
     void listExpand();
 	void listShrink();
 	void listOrganize();
+	void checkOut();
 
 	~List();
 };

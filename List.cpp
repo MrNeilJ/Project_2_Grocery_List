@@ -213,6 +213,22 @@ void List::listOrganize() {
 
 }
 
+void List::checkOut() {
+	double total = 0;
+	std::cout << "Now Checking out.  Here is a copy of your receipt!" << std::endl;
+	displayList();
+
+	for (int i = 0; i < arraySize; i++) {
+		if (groceryList[i].getItemName() != "") {
+			total += groceryList[i].getPrice() * groceryList[i].getQuantity();
+		}
+	}
+	std::cout << "Number of items: " << realItem << std::endl;
+	std::cout << "Total:           " << total << std::endl;
+
+	std::cout << "\nThank you and have a great day!" << std::endl;
+}
+
 List::~List() {
 	delete[]groceryList;
 	groceryList = nullptr;
