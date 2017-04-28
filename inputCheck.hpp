@@ -8,15 +8,16 @@
 #include <string>
 
 class inputCheck{
+
+
+private:
 	std::string tempString;
 	std::string tempWord;
 	char tempChar;
 	int tempInt;
 	float tempFloat;
-	
-public:
 
-private:
+public:
 	// String validators
 	std::string getString();		// Returns a string characters (can include spaces)
 	std::string getWord();			// Returns a single word and has the option to clear the istream

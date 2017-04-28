@@ -10,5 +10,11 @@ List.o: List.cpp List.hpp
 Item.o: Item.cpp Item.hpp
 	g++ -std=c++11 -c Item.cpp
 
+menuMaker.o: menuMaker.cpp menuMaker.hpp
+	g++ -std=c++11 -c menuMaker.cpp
+
+inputCheck.o: inputCheck.cpp inputCheck.hpp
+	g++ -std=c++11 -c inputCheck.cpp
+
 clean:
 	rm *.o output
