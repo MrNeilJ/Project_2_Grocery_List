@@ -28,6 +28,8 @@ public:
     void listExpand();
 	void listShrink();
 	void listOrganize();
+
+	~List();
 };
 
 

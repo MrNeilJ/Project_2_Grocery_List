@@ -64,7 +64,7 @@ void List::addItem() {
 									"Update with my new information",
 									"Leave original information intact");
 
-			int replaceChoice = -1;
+			int replaceChoice;
 			do {
 				replaceMenu.prompt();
 				replaceChoice = replaceMenu.getResponse();
@@ -102,154 +102,38 @@ void List::addItem() {
 void List::removeItem() {
     std::string tempString;
     bool found = false;
-    int i = 0;
 
     std::cout << "Type in the name of the item that you are looking to remove" << std::endl;
     tempString = getString();
 
     Item tempItem(tempString);
 
-    while ((!found || groceryList[i].getItemName() != "") && i < arraySize) {
-        if (groceryList[i] == tempItem) {
-            found = true;
+	for (int i = 0; i < arraySize; i++){
+		if (groceryList[i] == tempItem) {
 			std::cout << groceryList[i].getItemName() << " was removed." << std::endl;
 			groceryList[i].blankItem();
 			realItem--;
+			found = true;
 
 			// Organize the list to make sure all blank items are at the end of the array.
 			listOrganize();
 
 			// Shrink list if necessary and reorganize it
 			listShrink();
-        }
-        else {
-            i++;
-        }
-    }
-    if (!found) {
-        std::cout << "Could not find the item you were looking for, please try again. Thank you." << std::endl;
-    }
+		}
+	}
+	if (!found) {
+		std::cout << "Could not find the item you were looking for, please try again. Thank you." << std::endl;
+	}
 
 }
 
-/*
-void List::addItem() {
-	std::string tempItemName;
-	std::string tempType;
-	int tempQuantity;
-	double tempPrice;
-	bool found = false;
-	int i = 0;
-
-	std::cout << "Type in the name of the product you wish to add: ";
-	std::cin >> tempItemName;
-
-	// Make sure the item they are adding isn't already in the list
-	while (i < arraySize || !found){
-		// If the item is found in the list notify user
-		if (groceryList[i] == tempItemName) {
-			found = true;
-		}
-		else {
-			i++;
-		}
-	}
-
-	if (found){
-		std::cout << "It appears that you already have this item on you list. Would you like to update it? ";
-
-		// Create a menu function here
-		menuMaker existingMenu("It appears that you already have this item on you list. Would you like to update it?",
-								"Yes",
-								"No");
-		existingMenu.prompt();
-		int existingResponse = existingMenu.getResponse();
-
-		if (existingResponse == 1) {
-			std::cout << "Type in the unit type";
-			std::cin >> tempType;
-			std::cout << std::endl;
-
-			std::cout << "Type in the quantity in which you wish to buy: ";
-			std::cin >> tempQuantity;
-			std::cout << std::endl;
-
-			std::cout << "Type in the price of each separate item: ";
-			std::cin >> tempPrice;
-
-			// Modify the existing values
-			groceryList[i].setUnitType(tempType);
-			groceryList[i].setQuantity(tempQuantity);
-			groceryList[i].setPrice(tempPrice);
-
-			std::cout << tempItemName << " has been updated. Thank you!" << std::endl;
-		}
-
-	}
-	else {
-		std::cout << "Type in the unit type";
-		std::getline(std::cin, tempType);
-		std::cout << std::endl;
-
-		std::cout << "Type in the quantity in which you wish to buy: ";
-		std::cin >> tempQuantity;
-		std::cout << std::endl;
-
-		std::cout << "Type in the price of each separate item: ";
-		std::cin >> tempPrice;
-
-		// Adjust the array if adding item would cause it to get outside of its current bounds
-
-		// Add information as a new object in the grocery list
-		groceryList[arraySize] = Item(tempItemName, tempType, tempQuantity, tempPrice);
-
-		std::cout << tempItemName << " has been added. Thank you!" << std::endl;
-		realItem++;
-	}
-
-}
-*/
-/*
-void List::removeItem() {
-	int i = 0;
-	bool found = false;
-	std::string tempItemName;
-
-	std::cout << "Type in the name of the product you wish to remove: ";
-	std::getline(std::cin, tempItemName);
-
-	while (i < arraySize || !found){
-		// If the item is found in the list notify user
-		if (groceryList[i] == tempItemName) {
-			found = true;
-		}
-		else {
-			i++;
-		}
-	}
-
-	if (found) {
-		// Set the values stored in that section to all be NULL
-		groceryList[i].setItemName("");
-		groceryList[i].setUnitType("");
-		groceryList[i].setQuantity(0);
-		groceryList[i].setPrice(0);
-
-		realItem--;
-	}
-	else {
-		std::cout << "That item does not appear to be in your list, try again with a modified name" << std::endl;
-	}
-
-}
-*/
 
 void List::displayList() {
-	int i = 0;
-
-	while (groceryList[i].getItemName() != "") {
-		printItem(groceryList[i]);
-		i++;
+	for (int i = 0;i < arraySize; i++){
+		if (groceryList[i].getItemName() != "") {
+			printItem(groceryList[i]);
+		}
 	}
 }
 
@@ -263,30 +147,27 @@ void List::printItem(Item currentItem) {
 }
 
 void List::listExpand() {
-    // Check to see if the next item added would cause it to reach beyond the bounds of the array
-    if (realItem % 4 == 0 && realItem != 0) {
+	// Check to see if the next item added would cause it to reach beyond the bounds of the array
+	if (realItem % 4 == 0 && realItem != 0) {
+		int prevArray = arraySize;
 		arraySize += 4;
-        Item* tempPtr = new Item[arraySize];
-		int i = 0;
+		Item *tempPtr = new Item[arraySize];
 
-
-		// Add in items into the temp array
-		while (groceryList[i].getItemName() != "") {
+		// Add in items into the temporary array
+		for (int i = 0; i < prevArray; i++) {
 			tempPtr[i] = groceryList[i];
-			i++;
 		}
-		// Create Blank items for the rest of the array
-		for (i; i < arraySize; i++) {
+		for (int i = prevArray; i < arraySize; i++) {
 			tempPtr[i] = Item();
 		}
-
 		// Delete old dynamically created array
 		delete[] groceryList;
 
 		// Add the array in the temp array to the original array
 		groceryList = tempPtr;
+	}
 
-    }
+
 }
 
 void List::listShrink(){
@@ -295,17 +176,11 @@ void List::listShrink(){
 	if (realItem % 4 == 0 && realItem != 0) {
 		arraySize -= 4;
 		Item* tempPtr = new Item[arraySize];
-		int i = 0;
 
-		// Add in items into the temp array
-		while (groceryList[i].getItemName() != "") {
+		for (int i = 0; i < arraySize; i++) {
 			tempPtr[i] = groceryList[i];
-			i++;
 		}
-		// Create Blank items for the rest of the array
-		for (i; i < arraySize; i++) {
-			tempPtr[i] = Item();
-		}
+
 		// Delete old dynamically created array
 		delete[]groceryList;
 
@@ -335,5 +210,11 @@ void List::listOrganize() {
 	delete[]groceryList;
 
 	groceryList = tempPtr;
+
+}
+
+List::~List() {
+	delete[]groceryList;
+	groceryList = nullptr;
 
 }
