@@ -1,5 +1,5 @@
-output: main.o List.o Item.o
-	g++ main.o List.o Item.o -std=c++11 -o output
+output: main.o List.o Item.o menuMaker.o inputCheck.o
+	g++ main.o List.o Item.o menuMaker.o inputCheck.o -std=c++11 -o output
 
 main.o: main.cpp
 	g++ -std=c++11 -c main.cpp
