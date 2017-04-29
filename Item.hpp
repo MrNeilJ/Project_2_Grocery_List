@@ -1,6 +1,14 @@
-//
-// Created by Neil on 4/25/2017.
-//
+/**************************************************************
+ * Author: Neil Johnson
+ *
+ * Date: 4.30.2017
+ *
+ * Description: This is the Item header class for our grocery program.
+ * In this class we are able to create Item object that host
+ * information about their name, unitType, quantity, and price.
+ * We are able to pull indiviual pieces of information from them
+ * or even print them out in an easy to read format.
+**************************************************************/
 
 #ifndef PROJECT_2_ITEM_HPP
 #define PROJECT_2_ITEM_HPP

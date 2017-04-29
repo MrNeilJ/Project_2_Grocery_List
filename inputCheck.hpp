@@ -1,6 +1,13 @@
-//
-// Created by Neil on 4/27/2017.
-//
+/**************************************************************
+ * Author: Neil Johnson
+ *
+ * Date: 4.30.2017
+ *
+ * Description: This is a group of functions that I utilize
+ * to ensure that information is correctly inputted without
+ * giving wrong types of values that could cause the application
+ * to loop, be damaged, or segfault.
+**************************************************************/
 
 #ifndef PROJECT_2_INPUTCHECK_HPP
 #define PROJECT_2_INPUTCHECK_HPP
@@ -20,7 +27,7 @@ int getInt();					// Confirms user input was an int and returns that value
 float getFloat();				// Confirms user input was a float and returns that value
 
 // String manipulators
-std::string lowerCase(std::string);
-std::string capitalize(std::string) ;
+void lowerCase(std::string);
+void capitalize(std::string);
 
 #endif //PROJECT_2_INPUTCHECK_HPP

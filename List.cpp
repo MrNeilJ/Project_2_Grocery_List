@@ -1,6 +1,17 @@
-//
-// Created by Neil on 4/25/2017.
-//
+/**************************************************************
+ * Author: Neil Johnson
+ *
+ * Date: 4.30.2017
+ *
+ * Description: This is the List class in the grocery application.
+ * This class does the majority of the work in this program.
+ * In here we are able to dynamically create and resize a
+ * list to whatever size necessary. We can then add and remove
+ * items from the list as needed and even print out the list
+ * in an easy to read format. We can even checkout using
+ * the methods in this class
+**************************************************************/
+
 #include <iostream>
 #include <cstring>
 #include "List.hpp"
@@ -10,6 +21,13 @@
 /***************************************************
  * CONSTRUCTORS
  ***************************************************/
+/**************************************************************
+*                  List::List
+* Description: Constructor for the list object.  It dynamically
+* creates a list object with a default of 4 spaces.  It also
+* sets two variables so we can keep track of the amount of items
+* in the array.
+**************************************************************/
 List::List() {
 	// Creates a blank grocery list of 4 items.
 	groceryList = new Item[4];
@@ -21,6 +39,13 @@ List::List() {
 /***************************************************
  * MEMBER FUNCTIONS
  ***************************************************/
+/**************************************************************
+*                  List::addItem
+* Description: Asks the user for information to build a new
+* item object.  It then checks to see if there is enough space
+* in the grocerylist array and resizes if necessary.  It then
+* checks to see if the item exists, and adds it if it doesnt
+**************************************************************/
 void List::addItem() {
 	std::string tempItemName;
 	std::string tempType;
@@ -88,9 +113,6 @@ void List::addItem() {
 			realItem++;
 
 			found = true;
-
-			// If the item count is equal to the max array size, then resize the current array
-
 		}
         else {
             i++;
@@ -99,6 +121,13 @@ void List::addItem() {
 
 }
 
+/**************************************************************
+*                  List::removeItem
+* Description: Removes an item from the groceryList array.
+* It makes sure that the item exists, and if it does it removes
+* the item and blanks out that space, the array is then reorganized
+* and resized.
+**************************************************************/
 void List::removeItem() {
     std::string tempString;
     bool found = false;
@@ -128,7 +157,11 @@ void List::removeItem() {
 
 }
 
-
+/**************************************************************
+*                  List::displayList
+* Description: Prints all of the items that are not blank
+* in an easy to read format
+**************************************************************/
 void List::displayList() {
 	for (int i = 0;i < arraySize; i++){
 		if (groceryList[i].getItemName() != "") {
@@ -137,6 +170,10 @@ void List::displayList() {
 	}
 }
 
+/**************************************************************
+*                  List::printItem
+* Description: Prints a single item in an easy to read format
+**************************************************************/
 void List::printItem(Item currentItem) {
 	std::cout << "Item:      " << currentItem.getItemName() 	<< std::endl;
 	std::cout << "Unit Type: " << currentItem.getUnitType() 	<< std::endl;
@@ -146,6 +183,12 @@ void List::printItem(Item currentItem) {
 
 }
 
+/**************************************************************
+*                  List::listExpand
+* Description: Checks to see if another item were to be added
+* to the array if it go beyond the bounds of the current array
+* and if it does it resizes the array to be bigger.
+**************************************************************/
 void List::listExpand() {
 	// Check to see if the next item added would cause it to reach beyond the bounds of the array
 	if (realItem % 4 == 0 && realItem != 0) {
@@ -170,8 +213,13 @@ void List::listExpand() {
 
 }
 
+/**************************************************************
+*                  List::listShrink
+* Description: Checks to see if we are able to shrink the array
+* size and still fit all realItems into the shrunken grocery
+* list. If so it rebuilds the array smaller
+**************************************************************/
 void List::listShrink(){
-
 	// Check to see if the next item added would cause it to reach beyond the bounds of the array
 	if (realItem % 4 == 0 && realItem != 0) {
 		arraySize -= 4;
@@ -190,6 +238,11 @@ void List::listShrink(){
 	}
 }
 
+/**************************************************************
+*                  List::listOrganize
+* Description: Moves all realItems to the front of the array
+* and shifts any blank items to the end of the array
+**************************************************************/
 void List::listOrganize() {
 	int blankCount = 0;
 	int itemCount = 0;
@@ -213,6 +266,12 @@ void List::listOrganize() {
 
 }
 
+/**************************************************************
+*                  List::checkOut
+* Description: Prints out the items to the console and then
+* tells the customer how much they have to spend on all of
+* their items.
+**************************************************************/
 void List::checkOut() {
 	double total = 0;
 	std::cout << "Now Checking out.  Here is a copy of your receipt!" << std::endl;
@@ -229,6 +288,11 @@ void List::checkOut() {
 	std::cout << "\nThank you and have a great day!" << std::endl;
 }
 
+/**************************************************************
+*                  List::~List
+* Description: Destructor function that frees up dynamically
+* allocatted memory back to the computer.
+**************************************************************/
 List::~List() {
 	delete[]groceryList;
 	groceryList = nullptr;
